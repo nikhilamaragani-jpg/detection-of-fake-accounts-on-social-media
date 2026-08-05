@@ -2,6 +2,7 @@
 Data preprocessing utilities
 """
 
+import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -39,6 +40,27 @@ def create_sample_data(n_samples: int = 200) -> pd.DataFrame:
     ).astype(int)
 
     return df
+
+
+def load_csv_data(csv_path: str) -> pd.DataFrame:
+    df = pd.read_csv(csv_path)
+    required = FEATURE_NAMES + ["is_fake"]
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        raise ValueError(f"CSV missing columns: {missing}")
+    return df[required].copy()
+
+
+def get_dataset(prefer_csv: bool = True) -> pd.DataFrame:
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    csv_path = os.path.join(base_dir, "data", "sample_social_accounts.csv")
+
+    if prefer_csv and os.path.exists(csv_path):
+        print(f"Loading dataset from: {csv_path}")
+        return load_csv_data(csv_path)
+
+    print("CSV not found. Generating synthetic dataset...")
+    return create_sample_data()
 
 
 def preprocess_data(df: pd.DataFrame):
