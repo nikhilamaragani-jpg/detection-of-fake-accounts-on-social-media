@@ -8,7 +8,7 @@ import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from preprocess import create_sample_data, preprocess_data
+from preprocess import get_dataset, preprocess_data
 from model import train_models, evaluate_models, predict_account
 from database import init_db, log_prediction
 
@@ -20,8 +20,8 @@ def main():
 
     init_db()
 
-    df = create_sample_data(n_samples=300)
-    print(f"\nSample data created: {len(df)} records")
+    df = get_dataset(prefer_csv=True)
+    print(f"Dataset size: {len(df)} records")
 
     X_train, X_test, y_train, y_test, feature_names = preprocess_data(df)
     print("Data preprocessed and split.")
@@ -29,7 +29,6 @@ def main():
     models = train_models(X_train, y_train)
     best_model = evaluate_models(models, X_test, y_test)
 
-    # Demo prediction on one synthetic account
     sample_features = {
         "account_age_days": 12,
         "followers": 5,
