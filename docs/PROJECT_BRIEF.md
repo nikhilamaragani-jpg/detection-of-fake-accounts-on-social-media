@@ -15,4 +15,4 @@ Build an automated classification pipeline for suspicious social accounts using 
 ## Prototype vs report
 
 - **Repo:** runnable scikit-learn pipeline with sample data.  
-- **Report:** broader OSN literature, gradient-boosting style reasoning, tooling vision (APIs, big-data concepts).  
+- **Report:** broader OSN literature and tooling vision.  

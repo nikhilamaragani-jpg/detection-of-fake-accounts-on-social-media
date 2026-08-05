@@ -2,7 +2,7 @@
 
 # Detection of Fake Accounts on Social Media
 
-### B.Tech Project · Machine Learning · Classification · Trust & Safety concepts
+### B.Tech Project · Machine Learning · Classification
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
@@ -19,13 +19,13 @@
 
 ## Problem
 
-Fake profiles can spread spam and misinformation. Manual review does not scale well. This project implements a **complete supervised learning pipeline**: prepare profile/activity features, train and compare classifiers, evaluate metrics, run a sample prediction, and log results for review.
+Fake profiles can spread spam and misinformation. Manual review does not scale well. This project implements a **complete supervised learning pipeline**: prepare profile/activity features, train and compare classifiers, evaluate metrics, run a sample prediction, and log results.
 
 | Challenge | Approach |
 |-----------|----------|
 | Weak few-feature filters | Multi-signal feature preparation |
 | Single-model habit | Compare Random Forest, Logistic Regression, Gradient Boosting |
-| Accuracy-only thinking | Also report **F1** for class balance awareness |
+| Accuracy-only thinking | Also report **F1** |
 | No audit trail | SQLite prediction log |
 
 ---
@@ -36,7 +36,7 @@ Fake profiles can spread spam and misinformation. Manual review does not scale w
 Sample account CSV
         |
         v
-Preprocess & features  →  train/test split
+Preprocess & features → train/test split
         |
         v
 Train models (RF · LogReg · GradientBoosting)
@@ -58,7 +58,7 @@ Predict sample profile + log to SQLite
 | Data | pandas, NumPy |
 | ML | scikit-learn |
 | Storage | SQLite |
-| Data | `data/sample_social_accounts.csv` |
+| Data file | `data/sample_social_accounts.csv` |
 
 ---
 
@@ -96,7 +96,7 @@ python src/main.py
 **Full report / future extensions**
 - [ ] Live social API ingestion  
 - [ ] Graph / network features at scale  
-- [ ] Production monitoring loop  
+- [ ] Continuous monitoring loop  
 
 ---
 
@@ -104,11 +104,11 @@ python src/main.py
 
 | File | Purpose |
 |------|---------|
-| [docs/PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md) | Project brief |
-| [docs/DEMO.md](docs/DEMO.md) | Demo walkthrough |
-| [docs/INTERVIEW.md](docs/INTERVIEW.md) | Pitch & Q&A |
+| [docs/PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md) | Brief |
+| [docs/DEMO.md](docs/DEMO.md) | Demo |
+| [docs/INTERVIEW.md](docs/INTERVIEW.md) | Walkthrough |
 | [docs/RESUME_BULLETS.md](docs/RESUME_BULLETS.md) | Bullets |
-| [docs/ABOUT_TOPICS.md](docs/ABOUT_TOPICS.md) | Suggested topics |
+| [docs/ABOUT_TOPICS.md](docs/ABOUT_TOPICS.md) | Topics |
 
 **Suggested topics:** `python` · `machine-learning` · `scikit-learn` · `classification` · `trust-and-safety`
 
