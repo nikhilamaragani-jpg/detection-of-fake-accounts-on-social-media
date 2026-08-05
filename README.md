@@ -2,29 +2,67 @@
 
 # Detection of Fake Accounts on Social Media
 
-### B.Tech Research / Real-Time Project · Machine Learning · Trust & Safety
+### B.Tech Project · Machine Learning · Classification · Trust & Safety concepts
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Website-5b8cff)](https://nikhilamaragani-jpg.github.io/portfolio/)
+[![Status](https://img.shields.io/badge/Status-Runnable%20ML%20Pipeline-success)](https://github.com/nikhilamaragani-jpg/detection-of-fake-accounts-on-social-media)
 
-**Author:** Amaragani Nikhil Sai (22X31A0513)  
-**Guide:** Mrs. J. Pujitha · SIIET (JNTUH) · 2023–2024
+**Amaragani Nikhil Sai** · 22X31A0513 · SIIET (JNTUH) · Guide: Mrs. J. Pujitha · 2023–2024
 
-[Run](#quick-start) · [Interview](docs/INTERVIEW.md) · [Demo](docs/DEMO.md) · [Report](docs/REPORT_SUMMARY.md) · [Resume bullets](docs/RESUME_BULLETS.md)
+[Quick start](#quick-start) · [Pipeline](#ml-pipeline) · [Scope](#implementation-status) · [Docs](#documentation)
 
 </div>
 
 ---
 
-## Executive Summary
+## Problem
 
-Fake social accounts enable spam, scams, and misinformation. This repo ships an **end-to-end ML pipeline**: preprocess features → train Random Forest / Logistic Regression / Gradient Boosting → evaluate with accuracy + **F1** → predict a suspicious sample → **audit log** to SQLite.
+Fake profiles can spread spam and misinformation. Manual review does not scale well. This project implements a **complete supervised learning pipeline**: prepare profile/activity features, train and compare classifiers, evaluate metrics, run a sample prediction, and log results for review.
+
+| Challenge | Approach |
+|-----------|----------|
+| Weak few-feature filters | Multi-signal feature preparation |
+| Single-model habit | Compare Random Forest, Logistic Regression, Gradient Boosting |
+| Accuracy-only thinking | Also report **F1** for class balance awareness |
+| No audit trail | SQLite prediction log |
 
 ---
 
-## Quick Start
+## ML pipeline
+
+```text
+Sample account CSV
+        |
+        v
+Preprocess & features  →  train/test split
+        |
+        v
+Train models (RF · LogReg · GradientBoosting)
+        |
+        v
+Evaluate (accuracy, F1, classification report)
+        |
+        v
+Predict sample profile + log to SQLite
+```
+
+---
+
+## Tech stack
+
+| Area | Technology |
+|------|------------|
+| Language | Python 3 |
+| Data | pandas, NumPy |
+| ML | scikit-learn |
+| Storage | SQLite |
+| Data | `data/sample_social_accounts.csv` |
+
+---
+
+## Quick start
 
 ```bash
 git clone https://github.com/nikhilamaragani-jpg/detection-of-fake-accounts-on-social-media.git
@@ -35,27 +73,53 @@ python src/main.py
 
 ---
 
-## Documentation suite
+## Skills demonstrated
 
-| Doc | Purpose |
-|-----|---------|
-| [INTERVIEW.md](docs/INTERVIEW.md) | Pitch, Q&A, demo script |
-| [DEMO.md](docs/DEMO.md) | Expected output + architecture diagram |
-| [REPORT_SUMMARY.md](docs/REPORT_SUMMARY.md) | Academic report condensed |
-| [RESUME_BULLETS.md](docs/RESUME_BULLETS.md) | Copy-ready bullets |
-| [CONTRIBUTING.md](docs/CONTRIBUTING.md) | Dev notes |
-| [PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md) | Hiring-manager brief |
+| Skill | Evidence |
+|-------|----------|
+| ML fundamentals | Train / evaluate / predict loop |
+| Feature thinking | Profile & activity signals |
+| Experimentation | Multi-model comparison |
+| Metrics literacy | Accuracy + F1 |
+| Engineering hygiene | Modular `src/`, requirements, docs |
 
 ---
 
-## Skills demonstrated
+## Implementation status
 
-Feature engineering · multi-model comparison · imbalance-aware metrics · audit logging · trust & safety problem framing
+**Runnable prototype**
+- [x] End-to-end supervised pipeline  
+- [x] Feature preparation  
+- [x] Multi-model training & evaluation  
+- [x] Sample prediction + SQLite log  
+
+**Full report / future extensions**
+- [ ] Live social API ingestion  
+- [ ] Graph / network features at scale  
+- [ ] Production monitoring loop  
+
+---
+
+## Documentation
+
+| File | Purpose |
+|------|---------|
+| [docs/PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md) | Project brief |
+| [docs/DEMO.md](docs/DEMO.md) | Demo walkthrough |
+| [docs/INTERVIEW.md](docs/INTERVIEW.md) | Pitch & Q&A |
+| [docs/RESUME_BULLETS.md](docs/RESUME_BULLETS.md) | Bullets |
+| [docs/ABOUT_TOPICS.md](docs/ABOUT_TOPICS.md) | Suggested topics |
+
+**Suggested topics:** `python` · `machine-learning` · `scikit-learn` · `classification` · `trust-and-safety`
+
+---
 
 ## Author
 
-**Amaragani Nikhil Sai** · https://nikhilamaragani-jpg.github.io/portfolio/  
-LinkedIn: https://www.linkedin.com/in/nikhil-sai-amaragani-219115382 · Email: nikhilamaragani@gmail.com
+**Amaragani Nikhil Sai** · B.Tech CSE  
+Portfolio: https://nikhilamaragani-jpg.github.io/  
+Email: nikhilamaragani@gmail.com
 
 ## License
+
 MIT — see [LICENSE](LICENSE).

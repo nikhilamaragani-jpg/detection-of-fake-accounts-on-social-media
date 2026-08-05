@@ -1,4 +1,4 @@
-# Recommended GitHub About metadata
+# GitHub About
 
 **Homepage:** https://nikhilamaragani-jpg.github.io/  
 **Topics:** `python` `machine-learning` `scikit-learn` `classification` `trust-and-safety` `pandas`
