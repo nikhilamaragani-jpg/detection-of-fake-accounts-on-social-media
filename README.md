@@ -2,66 +2,89 @@
 
 **B.Tech Project** | Machine Learning | Classification | Social Media Analysis
 
-An academic machine learning project focused on detecting suspicious/fake social media accounts using behavioral features and classification techniques.
+A practical machine learning prototype for detecting potentially fake social media accounts using behavioral features, model comparison, and prediction logging.
 
 ---
 
 ## Overview
 
-Fake and automated accounts are a common problem on social media platforms. This project explores how machine learning can be used to identify potentially fake accounts based on profile and activity-related features.
+This project builds an end-to-end classification pipeline:
 
-**Project Type:** Academic / Prototype  
-**Status:** Concept + Basic Implementation Structure
+1. Generate/prepare account feature data
+2. Preprocess and split the dataset
+3. Train multiple classifiers
+4. Evaluate and select the better model
+5. Run a sample prediction
+6. Store prediction logs in SQLite
 
----
-
-## Problem Statement
-
-Social media platforms face challenges from fake accounts used for spam, misinformation, and fraudulent activities. Manual detection is difficult at scale.
-
-This project aims to:
-- Explore features that can indicate fake accounts
-- Apply classification techniques to detect suspicious profiles
-- Build a simple, understandable ML pipeline
+**Project Type:** Academic Prototype with working ML pipeline  
+**Status:** Runnable training + prediction + database logging
 
 ---
 
-## Key Concepts Covered
+## Architecture
 
-- Data preprocessing
-- Feature understanding (followers, activity patterns, profile completeness, etc.)
-- Supervised classification
-- Model evaluation basics
-- Building a simple prediction pipeline
+```text
+Raw/Synthetic Account Data
+            |
+            v
++----------------------+
+| Preprocessing Module |  (cleaning, feature prep, train/test split)
++----------------------+
+            |
+            v
++----------------------+
+| Model Training       |  (RandomForest, Logistic Regression)
++----------------------+
+            |
+            v
++----------------------+
+| Evaluation           |  (accuracy + classification report)
++----------------------+
+            |
+            v
++----------------------+
+| Prediction + SQLite  |  (log predicted label & probability)
++----------------------+
+```
+
+---
+
+## Features
+
+- Synthetic demo dataset for local testing
+- Feature engineering (including follower/following ratio)
+- Multiple model comparison
+- Probability-based prediction output
+- SQLite logging of predictions
 
 ---
 
 ## Tech Stack
 
-| Area              | Technologies                |
-|-------------------|-----------------------------|
-| Language          | Python                      |
-| Data Processing   | Pandas, NumPy               |
-| Machine Learning  | Scikit-learn                |
-| Visualization     | Matplotlib / Seaborn        |
-| Tools             | Jupyter, Git                |
+| Area | Technology |
+|------|------------|
+| Language | Python |
+| Data | Pandas, NumPy |
+| ML | Scikit-learn |
+| Storage | SQLite |
+| Tools | Git |
 
 ---
 
 ## Project Structure
 
-```
+```text
 detection-of-fake-accounts-on-social-media/
-━━ README.md
-━━ requirements.txt
-━━ .gitignore
-━━ LICENSE
-━━ src/
+├── README.md
+├── requirements.txt
+├── data/                 # predictions.db created at runtime
+├── src/
 │   ├── main.py
 │   ├── preprocess.py
-│   └── model.py
-━━ data/
-━━ notebooks/
+│   ├── model.py
+│   └── database.py
+└── LICENSE
 ```
 
 ---
@@ -73,9 +96,9 @@ git clone https://github.com/nikhilamaragani-jpg/detection-of-fake-accounts-on-s
 cd detection-of-fake-accounts-on-social-media
 
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
-
+source venv/bin/activate
 pip install -r requirements.txt
+
 python src/main.py
 ```
 
@@ -84,39 +107,31 @@ python src/main.py
 ## Current Status
 
 - [x] Problem definition
-- [x] Repository structure
-- [x] Basic ML pipeline skeleton
-- [ ] Full dataset integration
-- [ ] Complete model training & evaluation
-- [ ] Detailed analysis notebook
+- [x] Feature-based pipeline
+- [x] Multi-model training and evaluation
+- [x] Sample prediction
+- [x] SQLite prediction logging
+- [ ] Real-world dataset integration
+- [ ] Advanced feature set and model tuning
 
 ---
 
 ## Learning Outcomes
 
-- Understanding classification problems
-- Working with tabular features for ML
-- Building simple ML pipelines in Python
-- Evaluating model performance
-
----
-
-## Future Improvements
-
-- Add a real or sample dataset
-- Train and compare multiple classifiers
-- Add feature importance analysis
-- Create a simple prediction demo
+- Supervised classification workflow
+- Feature preparation for tabular ML
+- Model comparison and evaluation
+- Lightweight database logging for ML outputs
 
 ---
 
 ## Author
 
 **Amaragani Nikhil Sai**  
-B.Tech in Computer Science and Engineering  
+B.Tech in Computer Science and Engineering
 
-- GitHub: [nikhilamaragani-jpg](https://github.com/nikhilamaragani-jpg)  
-- LinkedIn: [Amaragani Nikhil Sai](https://linkedin.com/in/amaraganinikhilsai)  
+- GitHub: [nikhilamaragani-jpg](https://github.com/nikhilamaragani-jpg)
+- LinkedIn: [Amaragani Nikhil Sai](https://linkedin.com/in/amaraganinikhilsai)
 - Email: nikhilamaragani@gmail.com
 
 ---
