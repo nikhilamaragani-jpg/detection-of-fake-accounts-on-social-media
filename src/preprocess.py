@@ -7,11 +7,21 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
+FEATURE_NAMES = [
+    "account_age_days",
+    "followers",
+    "following",
+    "posts_count",
+    "has_profile_pic",
+    "has_bio",
+    "follower_following_ratio",
+]
+
 
 def create_sample_data(n_samples: int = 200) -> pd.DataFrame:
     """
-    Creates a small synthetic dataset for demonstration.
-    Replace this with a real dataset later.
+    Creates a synthetic dataset for demonstration.
+    Replace with a real dataset for production-style experiments.
     """
     np.random.seed(42)
 
@@ -27,7 +37,7 @@ def create_sample_data(n_samples: int = 200) -> pd.DataFrame:
     df = pd.DataFrame(data)
     df["follower_following_ratio"] = df["followers"] / (df["following"] + 1)
 
-    # Simple rule to create labels for demo purposes
+    # Label generation for demo purposes
     df["is_fake"] = (
         (df["account_age_days"] < 30)
         | ((df["followers"] < 10) & (df["following"] > 500))
@@ -38,17 +48,7 @@ def create_sample_data(n_samples: int = 200) -> pd.DataFrame:
 
 
 def preprocess_data(df: pd.DataFrame):
-    features = [
-        "account_age_days",
-        "followers",
-        "following",
-        "posts_count",
-        "has_profile_pic",
-        "has_bio",
-        "follower_following_ratio",
-    ]
-
-    X = df[features]
+    X = df[FEATURE_NAMES]
     y = df["is_fake"]
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -59,4 +59,4 @@ def preprocess_data(df: pd.DataFrame):
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-    return X_train, X_test, y_train, y_test
+    return X_train, X_test, y_train, y_test, FEATURE_NAMES
