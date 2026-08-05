@@ -1,6 +1,6 @@
 """
 Detection of Fake Accounts on Social Media
-Basic ML pipeline skeleton - Academic Prototype
+ML pipeline with model comparison + SQLite prediction logs
 """
 
 import sys
@@ -9,24 +9,45 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from preprocess import create_sample_data, preprocess_data
-from model import train_model, evaluate_model
+from model import train_models, evaluate_models, predict_account
+from database import init_db, log_prediction
 
 
 def main():
-    print("=" * 50)
+    print("=" * 55)
     print("Fake Account Detection - Prototype")
-    print("=" * 50)
+    print("=" * 55)
 
-    df = create_sample_data()
+    init_db()
+
+    df = create_sample_data(n_samples=300)
     print(f"\nSample data created: {len(df)} records")
 
-    X_train, X_test, y_train, y_test = preprocess_data(df)
+    X_train, X_test, y_train, y_test, feature_names = preprocess_data(df)
     print("Data preprocessed and split.")
 
-    model = train_model(X_train, y_train)
-    print("Model trained.")
+    models = train_models(X_train, y_train)
+    best_model = evaluate_models(models, X_test, y_test)
 
-    evaluate_model(model, X_test, y_test)
+    # Demo prediction on one synthetic account
+    sample_features = {
+        "account_age_days": 12,
+        "followers": 5,
+        "following": 800,
+        "posts_count": 3,
+        "has_profile_pic": 0,
+        "has_bio": 0,
+        "follower_following_ratio": 5 / 801,
+    }
+
+    vector = [sample_features[name] for name in feature_names]
+    label, prob = predict_account(best_model, vector)
+    log_prediction(sample_features, label, prob)
+
+    print("\n--- Sample Prediction ---")
+    print(f"Features: {sample_features}")
+    print(f"Predicted Label: {'Fake' if label == 1 else 'Genuine'} (probability={prob:.2f})")
+    print("Prediction saved to SQLite database (data/predictions.db)")
 
 
 if __name__ == "__main__":
