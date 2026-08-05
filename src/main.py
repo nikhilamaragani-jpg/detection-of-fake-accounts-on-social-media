@@ -1,6 +1,6 @@
 """
 Detection of Fake Accounts on Social Media
-ML pipeline with model comparison + SQLite prediction logs
+End-to-end ML pipeline with multi-model comparison + SQLite audit logs
 """
 
 import sys
@@ -14,9 +14,10 @@ from database import init_db, log_prediction
 
 
 def main():
-    print("=" * 55)
-    print("Fake Account Detection - Prototype")
-    print("=" * 55)
+    print("=" * 60)
+    print("  Fake Account Detection  |  B.Tech ML Prototype")
+    print("  Preprocess · Train · Compare · Predict · Audit log")
+    print("=" * 60)
 
     init_db()
 
@@ -24,6 +25,7 @@ def main():
     print(f"Dataset size: {len(df)} records")
 
     X_train, X_test, y_train, y_test, feature_names = preprocess_data(df)
+    print(f"Features used: {', '.join(feature_names)}")
     print("Data preprocessed and split.")
 
     models = train_models(X_train, y_train)
@@ -43,10 +45,11 @@ def main():
     label, prob = predict_account(best_model, vector)
     log_prediction(sample_features, label, prob)
 
-    print("\n--- Sample Prediction ---")
+    print("\n--- Sample Prediction (suspicious profile pattern) ---")
     print(f"Features: {sample_features}")
-    print(f"Predicted Label: {'Fake' if label == 1 else 'Genuine'} (probability={prob:.2f})")
-    print("Prediction saved to SQLite database (data/predictions.db)")
+    print(f"Predicted Label: {'Fake' if label == 1 else 'Genuine'} (p_fake={prob:.2f})")
+    print("Prediction saved to SQLite (data/predictions.db)")
+    print("\nDone. Review metrics above for interview discussion.")
 
 
 if __name__ == "__main__":
