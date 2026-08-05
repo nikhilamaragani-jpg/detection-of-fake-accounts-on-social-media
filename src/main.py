@@ -1,22 +1,23 @@
 """
-Detection of Fake Accounts on Social Media
-End-to-end ML pipeline with multi-model comparison + SQLite audit logs
+Fake Account Detection — ML pipeline entrypoint.
+Train, evaluate, export metrics, sample inference, audit log.
 """
 
-import sys
 import os
+import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from preprocess import get_dataset, preprocess_data
 from model import train_models, evaluate_models, predict_account
 from database import init_db, log_prediction
+from metrics_export import export_metrics
 
 
 def main():
     print("=" * 60)
-    print("  Fake Account Detection  |  B.Tech ML Prototype")
-    print("  Preprocess · Train · Compare · Predict · Audit log")
+    print("  Fake Account Detection  |  ML Portfolio Pipeline")
+    print("  Preprocess · Train · Compare · Metrics · Predict · Audit")
     print("=" * 60)
 
     init_db()
@@ -30,6 +31,7 @@ def main():
 
     models = train_models(X_train, y_train)
     best_model = evaluate_models(models, X_test, y_test)
+    export_metrics(models, X_test, y_test, feature_names)
 
     sample_features = {
         "account_age_days": 12,
@@ -48,8 +50,8 @@ def main():
     print("\n--- Sample Prediction (suspicious profile pattern) ---")
     print(f"Features: {sample_features}")
     print(f"Predicted Label: {'Fake' if label == 1 else 'Genuine'} (p_fake={prob:.2f})")
-    print("Prediction saved to SQLite (data/predictions.db)")
-    print("\nDone. Review metrics above for interview discussion.")
+    print("Prediction saved to SQLite; metrics under data/outputs/")
+    print("\nDone.")
 
 
 if __name__ == "__main__":

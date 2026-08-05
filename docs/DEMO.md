@@ -1,15 +1,9 @@
-# Demo walkthrough
+# Demo
 
 ```bash
 pip install -r requirements.txt
 python src/main.py
+python src/etl_batch.py
 ```
 
-```text
-Fake Account Detection  |  B.Tech ML Prototype
---- Model Evaluation ---
-RandomForest / LogisticRegression / GradientBoosting
-Best model by F1: ...
---- Sample Prediction ---
-Predicted Label: Fake / Genuine
-```
+Show: model comparison table, best F1 model, sample prediction, `data/outputs/metrics.json`.

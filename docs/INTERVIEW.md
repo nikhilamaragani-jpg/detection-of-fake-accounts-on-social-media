@@ -1,18 +1,7 @@
-# Project walkthrough — Fake Account Detection
+# Interview walkthrough
 
-## 60-second summary
+**Pitch:** End-to-end fake-account classifier with feature engineering, three models, F1-based selection, metrics artifacts, and prediction logging.
 
-I built an end-to-end ML pipeline: load data, engineer features, train Random Forest / Logistic Regression / Gradient Boosting, evaluate with accuracy and F1, predict a suspicious sample, and log results to SQLite.
-
-## Demo
-
-```bash
-pip install -r requirements.txt
-python src/main.py
-```
-
-## Questions
-
-**Why F1?** Class imbalance can make accuracy misleading.  
-**What features?** Account age, followers/following, posts, profile completeness, ratios.  
-**Prototype honesty?** Demo uses sample data; larger real datasets and continuous retraining are future work.
+**Why F1?** Imbalance / asymmetric cost of missing fakes.  
+**Features?** Age, graph-ish ratios, profile completeness.  
+**Production gap?** Live ingestion, monitoring, human review queue.

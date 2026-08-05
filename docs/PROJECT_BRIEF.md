@@ -2,17 +2,14 @@
 
 | Field | Detail |
 |-------|--------|
-| Type | B.Tech real-time / research project |
-| Author | Amaragani Nikhil Sai (22X31A0513) |
-| Institution | SIIET (JNTUH) |
-| Guide | Mrs. J. Pujitha |
-| Year | 2023–2024 |
+| Type | Portfolio ML / trust & safety pipeline |
+| Author | Amaragani Nikhil Sai |
+| Stack | Python, Pandas, scikit-learn, SQLite, Docker |
 
 ## Goal
 
-Build an automated classification pipeline for suspicious social accounts using profile/activity features, model comparison, and audit logging.
+Demonstrate a junior-ready ML workflow: data prep, multi-model training, F1-aware selection, metrics export, and auditable predictions.
 
-## Prototype vs report
+## Honest scope
 
-- **Repo:** runnable scikit-learn pipeline with sample data.  
-- **Report:** broader OSN literature and tooling vision.  
+Uses sample/synthetic social features — not live platform APIs.
