@@ -2,6 +2,7 @@
 Model training and evaluation for Fake Account Detection
 """
 
+import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
@@ -42,6 +43,8 @@ def evaluate_models(models: dict, X_test, y_test):
 
 
 def predict_account(model, feature_vector):
-    label = int(model.predict([feature_vector])[0])
-    probability = float(model.predict_proba([feature_vector])[0][1])
+    x = np.array(feature_vector, dtype=float).reshape(1, -1)
+    label = int(model.predict(x)[0])
+    proba = model.predict_proba(x)[0]
+    probability = float(proba[1]) if len(proba) > 1 else float(proba[0])
     return label, probability
