@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="360" viewBox="0 0 880 360">
+  <rect width="880" height="360" fill="#0b1220"/>
+  <text x="20" y="32" fill="#e8eefc" font-size="18" font-family="Segoe UI, Arial" font-weight="700">Fake Account Detection — ML Pipeline</text>
+  <rect x="30" y="80" width="150" height="60" rx="8" fill="#1e293b" stroke="#5b8cff"/><text x="55" y="115" fill="#e8eefc" font-size="13" font-family="Segoe UI, Arial">CSV / features</text>
+  <rect x="220" y="80" width="150" height="60" rx="8" fill="#1e293b" stroke="#5b8cff"/><text x="245" y="115" fill="#e8eefc" font-size="13" font-family="Segoe UI, Arial">Preprocess</text>
+  <rect x="410" y="80" width="150" height="60" rx="8" fill="#1e293b" stroke="#5b8cff"/><text x="445" y="115" fill="#e8eefc" font-size="13" font-family="Segoe UI, Arial">Train models</text>
+  <rect x="600" y="80" width="150" height="60" rx="8" fill="#1e293b" stroke="#34d399"/><text x="630" y="115" fill="#e8eefc" font-size="13" font-family="Segoe UI, Arial">Evaluate F1</text>
+  <rect x="220" y="200" width="150" height="60" rx="8" fill="#1e293b" stroke="#fbbf24"/><text x="250" y="235" fill="#e8eefc" font-size="13" font-family="Segoe UI, Arial">Inference</text>
+  <rect x="410" y="200" width="150" height="60" rx="8" fill="#1e293b" stroke="#a78bfa"/><text x="440" y="235" fill="#e8eefc" font-size="13" font-family="Segoe UI, Arial">SQLite audit</text>
+  <rect x="600" y="200" width="150" height="60" rx="8" fill="#1e293b" stroke="#94a3b8"/><text x="625" y="235" fill="#e8eefc" font-size="13" font-family="Segoe UI, Arial">CSV / metrics</text>
+  <text x="20" y="320" fill="#94a3b8" font-size="12" font-family="Segoe UI, Arial">Portfolio ML system on sample data — not a live social-network integration.</text>
+</svg>

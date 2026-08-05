@@ -1,27 +1,38 @@
-# Data Analyst angle
+# Data Analyst track
 
-## SQL-friendly questions (SQLite after runs)
+## Stack signals
 
-```sql
--- After predictions are logged, explore counts by label (example schema)
--- Adapt to your local table from database.py
-SELECT predicted_label, COUNT(*) FROM predictions GROUP BY predicted_label;
+SQL · Pandas · NumPy · EDA · Power BI · data cleaning · feature engineering · business insights
+
+## Run EDA
+
+```bash
+python scripts/eda_report.py
+# → data/outputs/eda_report.md
 ```
 
-## Pandas EDA checklist
+## SQL
 
-1. Class balance of `is_fake`  
-2. Distributions of followers / following / account age  
-3. Correlation of `follower_following_ratio` with label  
-4. Missingness (sample data is clean by design)  
+```bash
+python src/etl_batch.py
+sqlite3 data/predictions.db < scripts/sql_analytics.sql
+```
+
+Queries cover label mix, high-risk cohorts, and daily volume.
 
 ## Power BI
 
-1. Run `python src/main.py` and `python src/etl_batch.py`  
-2. Import `data/outputs/batch_predictions.csv` and `metrics.json`  
-3. Build visuals: predicted label share, p_fake histogram, feature importance bar chart  
+1. Import `data/sample_social_accounts.csv`  
+2. Import `data/outputs/batch_predictions.csv` (after ETL)  
+3. Import `data/outputs/metrics.json`  
+4. Build:  
+   - % fake vs genuine  
+   - p_fake histogram  
+   - followers vs following scatter by label  
+   - feature importance bar chart  
 
 ## Business insights language
 
-- Low age + high following + missing profile assets → elevated risk cohort  
-- F1 preferred over accuracy when genuine accounts dominate  
+- Young accounts + high following + missing profile photo → elevated risk segment  
+- Completeness features (bio, photo) improve precision of review queues  
+- F1 preferred when genuine accounts dominate traffic  

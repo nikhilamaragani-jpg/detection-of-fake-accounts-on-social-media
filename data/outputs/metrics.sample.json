@@ -1,0 +1,9 @@
+{
+  "note": "Sample metrics artifact for recruiters. Re-generate with: python src/main.py",
+  "RandomForest": {"accuracy": 0.833, "f1": 0.857},
+  "LogisticRegression": {"accuracy": 0.833, "f1": 0.8},
+  "GradientBoosting": {"accuracy": 0.833, "f1": 0.857},
+  "best_model_by_f1": "RandomForest",
+  "dataset": "data/sample_social_accounts.csv",
+  "disclaimer": "Metrics depend on small sample/synthetic-style labels; not industry benchmark claims."
+}

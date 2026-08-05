@@ -1,20 +1,24 @@
-# Machine Learning notes
+# Machine Learning track
 
-## Training
+## Training / evaluation / inference
 
-- Models: RandomForest, LogisticRegression, GradientBoosting  
-- `class_weight=balanced` where supported  
+```bash
+python src/main.py              # train, evaluate, export metrics, sample inference
+python src/tune_hyperparams.py  # GridSearchCV on RandomForest (F1)
+python src/etl_batch.py         # batch inference load
+```
 
-## Evaluation
+## Metrics
 
-- Accuracy + F1 + classification report  
-- Confusion matrix export  
+- Accuracy, F1, classification report  
+- Confusion matrix CSV per model  
 - Feature importance for tree models  
+- Sample: `data/outputs/metrics.sample.json`  
 
-## Inference
+## Reusable pipeline
 
-`predict_account(model, feature_vector)` returns label + p_fake.
+`src/sklearn_pipeline.py` — StandardScaler + RandomForest as a single sklearn `Pipeline`.
 
-## Hyperparameter tuning (TODO)
+## Hyperparameter tuning
 
-GridSearchCV on RF `n_estimators` / `max_depth` with stratified CV.
+Grid over `n_estimators`, `max_depth`, `min_samples_leaf` with stratified 3-fold CV, scoring **F1**.

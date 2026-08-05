@@ -2,15 +2,15 @@
 
 # Fake Account Detection on Social Media
 
-### Machine Learning · Data Analysis · Trust & Safety Pipeline
+### Production-style ML Application · Data Analysis · ETL
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](Dockerfile)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Portfolio ML system** by [Amaragani Nikhil Sai](https://github.com/nikhilamaragani-jpg)  
-Runnable training + evaluation pipeline on sample data. Not a live social network integration.
+**Amaragani Nikhil Sai** · Portfolio system for Junior ML / Data Engineer / Data Analyst roles  
+Runnable on sample data. Not a live social-network integration.
 
 </div>
 
@@ -18,105 +18,52 @@ Runnable training + evaluation pipeline on sample data. Not a live social networ
 
 ## Problem
 
-Fake social profiles spread spam and erode trust. Manual review does not scale. Teams need a **repeatable classification pipeline**: features, train/test split, multi-model comparison, metrics beyond accuracy, and audit logs.
+Fake profiles scale faster than manual review. Trust & safety teams need a repeatable path from raw account features → models → metrics → auditable predictions.
 
 ---
 
 ## Solution
 
-An end-to-end **supervised ML pipeline** for account risk scoring:
+A **production-style machine learning application**:
 
-- Load / generate profile-activity features (Pandas)  
-- Feature engineering + train/test split  
-- Train Random Forest, Logistic Regression, Gradient Boosting  
-- Evaluate with **accuracy, F1, classification report**  
-- Optional confusion matrix + feature importance export  
-- Sample inference + SQLite prediction log  
-- ETL-style script for batch scoring  
+- Feature engineering with Pandas / NumPy  
+- Multi-model training (RF, LogReg, Gradient Boosting)  
+- F1-aware selection, confusion matrices, feature importance  
+- Hyperparameter search (GridSearchCV)  
+- ETL-style batch scoring + SQLite audit log  
+- SQL analytics scripts + EDA report for analyst interviews  
 
 ---
 
 ## Features
 
-- Multi-model comparison with F1-aware selection  
-- Sample CSV dataset + synthetic fallback  
-- Metrics artifacts under `models/` / `data/outputs/`  
-- Prediction audit trail (SQLite)  
-- Dockerized batch run  
-- pytest coverage for preprocessing  
-- Docs for Data Analyst + ML interview angles  
+- End-to-end train → evaluate → infer  
+- Metrics export for dashboards  
+- Batch ETL load  
+- SQL queries for risk cohorts  
+- Dockerized pipeline  
+- pytest for preprocessing  
 
 ---
 
 ## Architecture
 
-```text
-CSV / synthetic data
-        |
-        v
-Preprocess & features  -->  train/test split
-        |
-        v
-Train models (RF · LogReg · GradientBoosting)
-        |
-        v
-Evaluate (accuracy, F1, report, confusion matrix)
-        |
-        v
-Select best by F1 --> predict sample --> SQLite log
-```
-
-```mermaid
-flowchart TD
-  A[Raw account features] --> B[Clean + engineer]
-  B --> C[Train / test split]
-  C --> D[Model training]
-  D --> E[Metrics + confusion matrix]
-  E --> F[Inference]
-  F --> G[Audit log SQLite]
-```
+![Pipeline](images/architecture.svg)
 
 ---
 
 ## Tech stack
 
-| Area | Technology |
-|------|------------|
-| Language | Python 3 |
-| Data | Pandas, NumPy |
-| ML | scikit-learn |
-| Storage | SQLite |
-| Packaging | Docker |
-| Quality | pytest |
-| Analytics angle | EDA notes, Power BI export guidance |
+Python · Pandas · NumPy · scikit-learn · SQL (SQLite) · Docker · pytest  
+Analytics: EDA, Power BI export path, business insights docs
 
 ---
 
 ## Folder structure
 
 ```text
-.
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── Dockerfile
-├── docker-compose.yml
-├── .env.example
-├── .github/workflows/ci.yml
-├── src/
-│   ├── main.py
-│   ├── preprocess.py
-│   ├── model.py
-│   ├── metrics_export.py
-│   ├── etl_batch.py
-│   └── database.py
-├── tests/
-├── docs/
-├── data/
-├── models/
-├── notebooks/
-├── scripts/
-└── images/
+src/  tests/  docs/  data/  models/  notebooks/  scripts/  images/
+Dockerfile  docker-compose.yml  requirements.txt  .github/workflows/ci.yml
 ```
 
 ---
@@ -134,16 +81,11 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-# Full train → evaluate → sample predict
 python src/main.py
-
-# Batch ETL-style scoring
+python src/tune_hyperparams.py
 python src/etl_batch.py
-
-# Tests
+python scripts/eda_report.py
 pytest -q
-
-# Docker
 docker compose up --build
 ```
 
@@ -151,70 +93,52 @@ docker compose up --build
 
 ## Project workflow
 
-1. Ingest sample CSV (or generate synthetic labeled data)  
-2. Engineer ratios and profile completeness features  
-3. Train three classifiers  
-4. Compare metrics; pick best by F1  
-5. Export metrics artifacts  
-6. Score a suspicious sample profile and log it  
+1. Load sample CSV  
+2. Engineer features / split  
+3. Train & compare models  
+4. Export metrics  
+5. Score batches → SQLite + CSV  
+6. Analyze with SQL / Power BI  
 
 ---
 
-## Screenshots / results assets
+## Screenshots / results
 
-| Asset | Location |
-|-------|----------|
-| Metrics JSON | `data/outputs/metrics.json` (after run) |
-| Confusion matrix CSV | `data/outputs/confusion_matrix.csv` |
-| Feature importance | `data/outputs/feature_importance.csv` |
-| Diagram notes | `images/README.md` |
+| Asset | Path |
+|-------|------|
+| Architecture | [images/architecture.svg](images/architecture.svg) |
+| Sample metrics | [data/outputs/metrics.sample.json](data/outputs/metrics.sample.json) |
+| EDA output | `data/outputs/eda_report.md` (after script) |
 
 ---
 
 ## Results
 
-| Item | Status |
-|------|--------|
-| End-to-end train/eval/predict | Implemented |
-| Multi-model comparison | Implemented |
-| F1-aware selection | Implemented |
-| Metrics export | Implemented |
-| Live social API ingestion | Not implemented (roadmap) |
-| Production model registry | Not implemented (roadmap) |
+Sample metrics on the included small dataset are illustrative only — see `metrics.sample.json`. Always re-run locally for current numbers.
 
 ---
 
 ## Future improvements
 
-- [ ] Hyperparameter search (GridSearchCV / Optuna)  
-- [ ] Larger public datasets + class imbalance techniques  
-- [ ] Graph / network features  
-- [ ] Model card + drift monitoring sketch  
-- [ ] Power BI dashboard from exported metrics  
+- [ ] Larger public datasets + imbalance techniques  
+- [ ] PostgreSQL sink + incremental loads  
+- [ ] Model registry / versioning  
+- [ ] Streaming feature ingestion API  
 
 ---
 
 ## Skills demonstrated
 
-ML fundamentals · feature engineering · evaluation literacy · Pandas EDA · ETL-style batch scoring · modular Python · Docker · documentation for hiring reviews
+Machine Learning · feature engineering · evaluation · hyperparameter tuning · ETL · SQL analytics · Data Analysis · Docker · documentation
 
 ---
 
 ## Documentation
 
-- [docs/PROJECT_BRIEF.md](docs/PROJECT_BRIEF.md)  
-- [docs/DEMO.md](docs/DEMO.md)  
-- [docs/INTERVIEW.md](docs/INTERVIEW.md)  
-- [docs/RESUME_BULLETS.md](docs/RESUME_BULLETS.md)  
-- [docs/DATA_ANALYST.md](docs/DATA_ANALYST.md)  
-- [docs/DATA_ENGINEERING.md](docs/DATA_ENGINEERING.md)  
-- [docs/ML_NOTES.md](docs/ML_NOTES.md)  
-- [docs/ABOUT_TOPICS.md](docs/ABOUT_TOPICS.md)  
-
----
+[PROJECT_BRIEF](docs/PROJECT_BRIEF.md) · [DATA_ANALYST](docs/DATA_ANALYST.md) · [DATA_ENGINEERING](docs/DATA_ENGINEERING.md) · [ML_NOTES](docs/ML_NOTES.md) · [DEMO](docs/DEMO.md) · [INTERVIEW](docs/INTERVIEW.md) · [RESUME_BULLETS](docs/RESUME_BULLETS.md)
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT
 
 **Author:** Amaragani Nikhil Sai · https://nikhilamaragani-jpg.github.io/

@@ -1,24 +1,36 @@
-# Data Engineering angle
+# Data Engineering track
 
-## Pipeline stages
+## Pipeline architecture
 
-| Stage | Implementation |
-|-------|----------------|
-| Extract | CSV / synthetic generator |
-| Transform | Feature ratios, train/test split |
-| Load | SQLite prediction log + CSV batch export |
+```text
+Extract (CSV / generator)
+   → Transform (features, ratios, train/test)
+   → Train / score
+   → Load (SQLite audit + CSV batch export)
+```
 
-## Incremental loads (roadmap)
+## Implemented
 
-- Track `account_id` + `scored_at`  
-- Score only new/changed rows  
-- Partition output by date  
+| Piece | Location |
+|-------|----------|
+| Batch ETL scoring | `src/etl_batch.py` |
+| Prediction audit log | `src/database.py` |
+| Metrics artifacts | `src/metrics_export.py` |
+| SQL analytics | `scripts/sql_analytics.sql` |
+| Docker batch | `Dockerfile` / `docker-compose.yml` |
 
-## Scheduling
+## PostgreSQL upgrade (TODO — not live)
 
-- Local: cron / Task Scheduler calling `python src/etl_batch.py`  
-- Cloud: GitHub Actions scheduled workflow or Airflow DAG (not included)  
+- Replace SQLite with PostgreSQL DSN via env  
+- Table `predictions` with indexes on `created_at`, `predicted_label`  
+- Incremental load key: `account_id` + content hash  
 
-## Logging
+## Scheduling (TODO)
 
-Console metrics + SQLite audit + file artifacts under `data/outputs/`.
+- GitHub Actions `schedule:` cron  
+- Or Airflow/Prefect DAG calling `python src/etl_batch.py`  
+
+## API ingestion (TODO)
+
+- REST endpoint accepting feature JSON batches  
+- Validate with Pydantic, append to store  
