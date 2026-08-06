@@ -1,16 +1,16 @@
 <div align="center">
 
-# Fake Account Detection on Social Media
+# Detection of Fake Accounts on Social Media
 
-### Production-style ML Application · Data Analysis · ETL
+### B.Tech Project · Machine Learning · Classification · ETL Practice
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](Dockerfile)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**Amaragani Nikhil Sai** · Portfolio system for Junior ML / Data Engineer / Data Analyst roles  
-Runnable on sample data. Not a live social-network integration.
+**Amaragani Nikhil Sai** · B.Tech CSE · SIIET (JNTUH)  
+Runnable ML pipeline on sample data. Not a live social-network integration.
 
 </div>
 
@@ -18,29 +18,29 @@ Runnable on sample data. Not a live social-network integration.
 
 ## Problem
 
-Fake profiles scale faster than manual review. Trust & safety teams need a repeatable path from raw account features → models → metrics → auditable predictions.
+Fake profiles can spread spam and misinformation. Manual review does not scale well. This project implements a **complete supervised learning pipeline**: prepare features, train and compare models, evaluate metrics, and log predictions.
 
 ---
 
 ## Solution
 
-A **production-style machine learning application**:
+An end-to-end ML pipeline with:
 
-- Feature engineering with Pandas / NumPy  
+- Feature engineering (Pandas / NumPy)  
 - Multi-model training (RF, LogReg, Gradient Boosting)  
 - F1-aware selection, confusion matrices, feature importance  
 - Hyperparameter search (GridSearchCV)  
 - ETL-style batch scoring + SQLite audit log  
-- SQL analytics scripts + EDA report for analyst interviews  
+- SQL analytics scripts + EDA report  
 
 ---
 
 ## Features
 
 - End-to-end train → evaluate → infer  
-- Metrics export for dashboards  
+- Metrics export for review  
 - Batch ETL load  
-- SQL queries for risk cohorts  
+- SQL queries for cohort analysis  
 - Dockerized pipeline  
 - pytest for preprocessing  
 
@@ -54,8 +54,7 @@ A **production-style machine learning application**:
 
 ## Tech stack
 
-Python · Pandas · NumPy · scikit-learn · SQL (SQLite) · Docker · pytest  
-Analytics: EDA, Power BI export path, business insights docs
+Python · Pandas · NumPy · scikit-learn · SQL (SQLite) · Docker · pytest
 
 ---
 
@@ -98,7 +97,7 @@ docker compose up --build
 3. Train & compare models  
 4. Export metrics  
 5. Score batches → SQLite + CSV  
-6. Analyze with SQL / Power BI  
+6. Analyze with SQL / EDA notes  
 
 ---
 
@@ -114,31 +113,30 @@ docker compose up --build
 
 ## Results
 
-Sample metrics on the included small dataset are illustrative only — see `metrics.sample.json`. Always re-run locally for current numbers.
+Metrics on the small included dataset are illustrative — re-run locally for current numbers. **Prototype honesty:** sample/synthetic-style data, not live platform APIs.
 
 ---
 
 ## Future improvements
 
 - [ ] Larger public datasets + imbalance techniques  
-- [ ] PostgreSQL sink + incremental loads  
-- [ ] Model registry / versioning  
-- [ ] Streaming feature ingestion API  
+- [ ] Stronger evaluation notebooks  
+- [ ] Incremental batch scoring design notes  
 
 ---
 
 ## Skills demonstrated
 
-Machine Learning · feature engineering · evaluation · hyperparameter tuning · ETL · SQL analytics · Data Analysis · Docker · documentation
+Machine Learning · feature engineering · evaluation · hyperparameter tuning · ETL practice · SQL analytics · Docker · documentation
 
 ---
 
 ## Documentation
 
-[PROJECT_BRIEF](docs/PROJECT_BRIEF.md) · [DATA_ANALYST](docs/DATA_ANALYST.md) · [DATA_ENGINEERING](docs/DATA_ENGINEERING.md) · [ML_NOTES](docs/ML_NOTES.md) · [DEMO](docs/DEMO.md) · [INTERVIEW](docs/INTERVIEW.md) · [RESUME_BULLETS](docs/RESUME_BULLETS.md)
+[PROJECT_BRIEF](docs/PROJECT_BRIEF.md) · [DEMO](docs/DEMO.md) · [INTERVIEW](docs/INTERVIEW.md) · [RESUME_BULLETS](docs/RESUME_BULLETS.md) · [DATA_ANALYST](docs/DATA_ANALYST.md) · [ML_NOTES](docs/ML_NOTES.md)
 
 ## License
 
 MIT
 
-**Author:** Amaragani Nikhil Sai · https://nikhilamaragani-jpg.github.io/
+**Author:** Amaragani Nikhil Sai · B.Tech CSE · https://nikhilamaragani-jpg.github.io/

@@ -1,7 +1,10 @@
 # GitHub About
 
-**Description:** Production-style ML pipeline for fake account detection | Pandas · scikit-learn · ETL · SQL analytics
+**Description:**
+B.Tech Project: Fake Account Detection | ML classification · Pandas · scikit-learn · evaluation
 
-**Homepage:** https://nikhilamaragani-jpg.github.io/
+**Homepage:**
+https://nikhilamaragani-jpg.github.io/
 
-**Topics:** python, machine-learning, scikit-learn, pandas, numpy, sql, etl, data-engineering, data-analysis, classification, docker
+**Topics:**
+python, machine-learning, scikit-learn, pandas, classification, etl, data-analysis, docker, btech-project
