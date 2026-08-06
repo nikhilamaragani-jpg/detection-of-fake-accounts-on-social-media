@@ -25,3 +25,8 @@ Identify suspicious social media profiles using behavioral / profile signals and
 | Full institutional report | Engineering demo + metrics export + ETL-style batch script |
 
 Not a live social-network API integration.
+
+## Full PDF
+
+[Download real-time project report (PDF)](reports/Real_Time_Project_Fake_Account_Detection_Report.pdf)
+

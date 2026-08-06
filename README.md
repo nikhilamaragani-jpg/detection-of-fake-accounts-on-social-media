@@ -19,6 +19,9 @@ Report notes: [docs/REPORT_SUMMARY.md](docs/REPORT_SUMMARY.md)
 
 ---
 
+![Report cover](images/report_cover.svg)
+
+
 ## Problem
 
 Fake profiles can spread spam and misinformation. Manual review does not scale. This project implements a **supervised learning pipeline** from profile/activity features to classification and audit logs.
@@ -73,3 +76,8 @@ pytest -q
 ## License
 
 MIT · **Author:** Amaragani Nikhil Sai · https://nikhilamaragani-jpg.github.io/
+
+### Academic report PDF
+
+- **Real-time project PDF:** [docs/reports/Real_Time_Project_Fake_Account_Detection_Report.pdf](docs/reports/Real_Time_Project_Fake_Account_Detection_Report.pdf)
+
