@@ -1,8 +1,8 @@
 # Project walkthrough — Fake Account Detection
 
-## 60-second summary
+## 60-second pitch
 
-I built an end-to-end ML pipeline: load data, engineer features, train Random Forest / Logistic Regression / Gradient Boosting, evaluate with accuracy and F1, predict a sample profile, and log results to SQLite.
+My B.Tech real-time project (2023–24, guide Mrs. J. Pujitha, roll 22X31A0513) is *Detection of Fake Accounts on Social Media*. On GitHub I ship a complete supervised pipeline: load features, train Random Forest / Logistic Regression / Gradient Boosting, compare with accuracy and F1, score a sample profile, and log results to SQLite.
 
 ## Demo
 
@@ -13,6 +13,6 @@ python src/main.py
 
 ## Questions
 
-**Why F1?** Class imbalance can make accuracy alone misleading.  
-**What features?** Account age, followers/following, posts, profile completeness, ratios.  
-**Prototype honesty?** Demo uses sample data; larger real datasets are future work.
+**Why F1?** Imbalance can make accuracy alone misleading.  
+**Features?** Account age, followers/following, posts, profile completeness, ratios.  
+**Honesty?** Sample data demo — not live platform APIs.
