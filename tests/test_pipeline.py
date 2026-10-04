@@ -54,6 +54,7 @@ def test_validate_dataset_rejects_invalid_values():
         ("is_fake", np.nan, "missing or non-finite"),
         ("posts_count", 1.5, "whole-number"),
         ("follower_following_ratio", -0.1, "non-negative"),
+        ("follower_following_ratio", 99, "must equal followers"),
     ],
 )
 def test_validate_dataset_rejects_invalid_feature_values(column, value, message):
@@ -89,6 +90,14 @@ def test_preprocessing_requires_two_examples_per_class():
 
     with pytest.raises(ValueError, match="at least three rows for each label"):
         preprocess_data(df)
+
+
+def test_repository_csv_passes_derived_ratio_validation():
+    df = pd.read_csv(ROOT / "data" / "sample_social_accounts.csv")
+
+    validated = validate_dataset(df)
+
+    assert len(validated) == len(df)
 
 
 def test_model_metrics_and_exports_are_analyst_friendly(tmp_path):

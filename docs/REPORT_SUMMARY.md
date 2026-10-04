@@ -29,6 +29,13 @@ independent ground-truth verification. Results are a workflow demonstration,
 not validated detection performance. The application is not a live social
 network API integration or streaming service.
 
+The report also discusses platform data collection, spam/engagement behavior,
+administrator dashboards, alerts, and real-time monitoring. Those are report
+concepts, not repository capabilities. The code uses the seven tabular features
+listed in [Dataset notes](../data/README.md); see the
+[implementation alignment table](PROJECT_BRIEF.md#implementation-alignment)
+for the complete scope comparison.
+
 ## Full PDF
 
 [Download real-time project report (PDF)](reports/Real_Time_Project_Fake_Account_Detection_Report.pdf)
