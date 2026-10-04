@@ -47,6 +47,14 @@ def validate_dataset(df: pd.DataFrame) -> pd.DataFrame:
             raise ValueError(f"Column '{column}' must contain only 0 or 1.")
     if (validated["follower_following_ratio"] < 0).any():
         raise ValueError("Column 'follower_following_ratio' must be non-negative.")
+    expected_ratio = validated["followers"] / (validated["following"] + 1)
+    if not np.isclose(
+        validated["follower_following_ratio"], expected_ratio, rtol=0, atol=5e-4
+    ).all():
+        raise ValueError(
+            "Column 'follower_following_ratio' must equal followers / (following + 1) "
+            "within CSV rounding tolerance (0.0005)."
+        )
 
     return validated
 

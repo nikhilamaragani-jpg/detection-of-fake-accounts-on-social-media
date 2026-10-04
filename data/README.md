@@ -25,8 +25,10 @@ real-world accuracy or used to make decisions about real accounts.
 | `is_fake` | Demo target (`1` = fake, `0` = genuine) |
 
 Counts and ratios must be non-negative; indicator and target columns must be
-binary. The pipeline rejects missing, non-numeric, or non-finite values and
-uses a stratified train/test split. Replace this file with a licensed,
+binary. The ratio must agree with `followers / (following + 1)` within
+`0.0005` to allow for three-decimal rounding in the bundled CSV. The
+pipeline rejects missing, non-numeric, non-finite, and inconsistent values
+and uses a stratified train/test split. Replace this file with a licensed,
 representative, independently labeled dataset before drawing operational
 conclusions. Do not include personal or platform-restricted data without
 appropriate authorization and privacy safeguards.
