@@ -1,5 +1,5 @@
 """
-Fake Account Detection — ML pipeline entrypoint.
+Fake Account Detection -- ML pipeline entrypoint.
 Train, evaluate, export metrics, sample inference, audit log.
 """
 
@@ -9,7 +9,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from preprocess import get_dataset, preprocess_data
-from model import train_models, evaluate_models, predict_account
+from model import train_models, cross_validate_models, evaluate_models, predict_account
 from database import init_db, log_prediction
 from metrics_export import export_metrics
 
@@ -17,7 +17,7 @@ from metrics_export import export_metrics
 def main():
     print("=" * 60)
     print("  Fake Account Detection  |  ML Portfolio Pipeline")
-    print("  Preprocess · Train · Compare · Metrics · Predict · Audit")
+    print("  Preprocess | Train | Compare | Metrics | Predict | Audit")
     print("=" * 60)
 
     init_db()
@@ -30,8 +30,9 @@ def main():
     print("Data preprocessed and split.")
 
     models = train_models(X_train, y_train)
-    best_model = evaluate_models(models, X_test, y_test)
-    export_metrics(models, X_test, y_test, feature_names)
+    selection_scores = cross_validate_models(models, X_train, y_train)
+    best_model = evaluate_models(models, X_test, y_test, selection_scores)
+    export_metrics(models, X_test, y_test, feature_names, selection_scores)
 
     sample_features = {
         "account_age_days": 12,

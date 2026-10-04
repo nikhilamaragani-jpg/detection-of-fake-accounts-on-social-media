@@ -21,6 +21,10 @@ Report notes: [docs/REPORT_SUMMARY.md](docs/REPORT_SUMMARY.md)
 
 ![Report cover](images/report_cover.svg)
 
+> **Dataset caveat:** The repository includes only 30 illustrative, balanced rows.
+> Data provenance and ground-truth labeling are not documented, so generated
+> evaluation metrics are a workflow demo—not evidence of real-world accuracy.
+> See [data/README.md](data/README.md).
 
 ## Problem
 
@@ -32,7 +36,7 @@ Fake profiles can spread spam and misinformation. Manual review does not scale. 
 
 - Feature preparation (Pandas / NumPy)  
 - Train Random Forest, Logistic Regression, Gradient Boosting  
-- Evaluate with accuracy, F1, classification report  
+- Select models with training-only stratified cross-validation; report precision, recall, F1, balanced accuracy, ROC AUC, and confusion matrices on a held-out split
 - Export metrics artifacts  
 - Sample inference + SQLite prediction log  
 - Optional ETL-style batch scoring  
@@ -44,8 +48,8 @@ Fake profiles can spread spam and misinformation. Manual review does not scale. 
 ![Pipeline](images/architecture.svg)
 
 ```text
-Sample account CSV → Preprocess & features → Train/test split
-  → Multi-model training → Evaluate (F1-aware) → Predict + log
+Sample account CSV → Validate & engineer features → Stratified holdout split
+  → Training-fold model selection → Holdout evaluation → Predict + audit log
 ```
 
 ---
@@ -71,7 +75,7 @@ pytest -q
 
 ## Documentation
 
-[REPORT_SUMMARY](docs/REPORT_SUMMARY.md) · [PROJECT_BRIEF](docs/PROJECT_BRIEF.md) · [DEMO](docs/DEMO.md) · [INTERVIEW](docs/INTERVIEW.md) · [RESUME_BULLETS](docs/RESUME_BULLETS.md) · [ML_NOTES](docs/ML_NOTES.md)
+[DATASET](data/README.md) · [REPORT_SUMMARY](docs/REPORT_SUMMARY.md) · [PROJECT_BRIEF](docs/PROJECT_BRIEF.md) · [DATA_ANALYST](docs/DATA_ANALYST.md) · [DEMO](docs/DEMO.md) · [INTERVIEW](docs/INTERVIEW.md) · [RESUME_BULLETS](docs/RESUME_BULLETS.md) · [ML_NOTES](docs/ML_NOTES.md)
 
 ## License
 
@@ -80,4 +84,3 @@ MIT · **Author:** Amaragani Nikhil Sai · https://nikhilamaragani-jpg.github.io
 ### Academic report PDF
 
 - **Real-time project PDF:** [docs/reports/Real_Time_Project_Fake_Account_Detection_Report.pdf](docs/reports/Real_Time_Project_Fake_Account_Detection_Report.pdf)
-
