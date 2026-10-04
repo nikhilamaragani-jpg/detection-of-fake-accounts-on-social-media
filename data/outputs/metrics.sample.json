@@ -1,9 +1,44 @@
 {
-  "note": "Sample metrics artifact for recruiters. Re-generate with: python src/main.py",
-  "RandomForest": {"accuracy": 0.833, "f1": 0.857},
-  "LogisticRegression": {"accuracy": 0.833, "f1": 0.8},
-  "GradientBoosting": {"accuracy": 0.833, "f1": 0.857},
-  "best_model_by_f1": "RandomForest",
-  "dataset": "data/sample_social_accounts.csv",
-  "disclaimer": "Metrics depend on small sample/synthetic-style labels; not industry benchmark claims."
+  "note": "Output schema example only. Run python src/main.py to generate metrics for the current data.",
+  "RandomForest": {
+    "accuracy": null,
+    "balanced_accuracy": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "specificity": null,
+    "confusion_matrix": [[0, 0], [0, 0]],
+    "roc_auc": null,
+    "average_precision": null,
+    "training_cv_f1": null
+  },
+  "LogisticRegression": {
+    "accuracy": null,
+    "balanced_accuracy": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "specificity": null,
+    "confusion_matrix": [[0, 0], [0, 0]],
+    "roc_auc": null,
+    "average_precision": null,
+    "training_cv_f1": null
+  },
+  "GradientBoosting": {
+    "accuracy": null,
+    "balanced_accuracy": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "specificity": null,
+    "confusion_matrix": [[0, 0], [0, 0]],
+    "roc_auc": null,
+    "average_precision": null,
+    "training_cv_f1": null
+  },
+  "best_model_by_training_cv_f1": null,
+  "positive_label": 1,
+  "positive_label_name": "fake",
+  "holdout_accounts": null,
+  "evaluation_note": "Holdout metrics are exploratory estimates from a small demo dataset, not production performance claims."
 }

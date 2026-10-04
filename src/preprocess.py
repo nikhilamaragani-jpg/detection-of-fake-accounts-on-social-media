@@ -18,16 +18,51 @@ FEATURE_NAMES = [
 ]
 
 
+def validate_dataset(df: pd.DataFrame) -> pd.DataFrame:
+    """Return the required dataset columns as numeric values after validation."""
+    if df.columns.duplicated().any():
+        raise ValueError("Dataset must not contain duplicate column names.")
+    required = FEATURE_NAMES + ["is_fake"]
+    missing = [column for column in required if column not in df.columns]
+    if missing:
+        raise ValueError(f"Dataset missing required columns: {missing}")
+    if df.empty:
+        raise ValueError("Dataset must contain at least one row.")
+
+    validated = df[required].copy()
+    for column in required:
+        validated[column] = pd.to_numeric(validated[column], errors="coerce")
+        values = validated[column].to_numpy(dtype=float)
+        if not np.isfinite(values).all():
+            raise ValueError(f"Column '{column}' contains missing or non-finite values.")
+
+    count_columns = ["account_age_days", "followers", "following", "posts_count"]
+    for column in count_columns:
+        if (validated[column] < 0).any():
+            raise ValueError(f"Column '{column}' must contain non-negative values.")
+        if not np.equal(validated[column] % 1, 0).all():
+            raise ValueError(f"Column '{column}' must contain whole-number counts.")
+    for column in ["has_profile_pic", "has_bio", "is_fake"]:
+        if not validated[column].isin([0, 1]).all():
+            raise ValueError(f"Column '{column}' must contain only 0 or 1.")
+    if (validated["follower_following_ratio"] < 0).any():
+        raise ValueError("Column 'follower_following_ratio' must be non-negative.")
+
+    return validated
+
+
 def create_sample_data(n_samples: int = 200) -> pd.DataFrame:
-    np.random.seed(42)
+    if n_samples < 1:
+        raise ValueError("n_samples must be greater than zero.")
+    rng = np.random.default_rng(42)
 
     data = {
-        "account_age_days": np.random.randint(1, 2000, n_samples),
-        "followers": np.random.randint(0, 10000, n_samples),
-        "following": np.random.randint(0, 5000, n_samples),
-        "posts_count": np.random.randint(0, 3000, n_samples),
-        "has_profile_pic": np.random.randint(0, 2, n_samples),
-        "has_bio": np.random.randint(0, 2, n_samples),
+        "account_age_days": rng.integers(1, 2000, n_samples),
+        "followers": rng.integers(0, 10000, n_samples),
+        "following": rng.integers(0, 5000, n_samples),
+        "posts_count": rng.integers(0, 3000, n_samples),
+        "has_profile_pic": rng.integers(0, 2, n_samples),
+        "has_bio": rng.integers(0, 2, n_samples),
     }
 
     df = pd.DataFrame(data)
@@ -44,11 +79,7 @@ def create_sample_data(n_samples: int = 200) -> pd.DataFrame:
 
 def load_csv_data(csv_path: str) -> pd.DataFrame:
     df = pd.read_csv(csv_path)
-    required = FEATURE_NAMES + ["is_fake"]
-    missing = [c for c in required if c not in df.columns]
-    if missing:
-        raise ValueError(f"CSV missing columns: {missing}")
-    return df[required].copy()
+    return validate_dataset(df)
 
 
 def get_dataset(prefer_csv: bool = True) -> pd.DataFrame:
@@ -64,11 +95,18 @@ def get_dataset(prefer_csv: bool = True) -> pd.DataFrame:
 
 
 def preprocess_data(df: pd.DataFrame):
-    X = df[FEATURE_NAMES].values
-    y = df["is_fake"].values
+    df = validate_dataset(df)
+    X = df[FEATURE_NAMES].to_numpy(dtype=float)
+    y = df["is_fake"].to_numpy(dtype=int)
+    class_counts = pd.Series(y).value_counts()
+    if len(class_counts) != 2 or class_counts.min() < 3:
+        raise ValueError(
+            "Model selection requires at least three rows for each label."
+        )
 
+    test_size = max(2, int(np.ceil(0.2 * len(y))))
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
+        X, y, test_size=test_size, random_state=42, stratify=y
     )
 
     return X_train, X_test, y_train, y_test, FEATURE_NAMES
