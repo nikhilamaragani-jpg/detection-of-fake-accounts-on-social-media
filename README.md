@@ -84,3 +84,9 @@ MIT · **Author:** Amaragani Nikhil Sai · https://nikhilamaragani-jpg.github.io
 ### Academic report PDF
 
 - **Real-time project PDF:** [docs/reports/Real_Time_Project_Fake_Account_Detection_Report.pdf](docs/reports/Real_Time_Project_Fake_Account_Detection_Report.pdf)
+
+## Portfolio positioning
+
+This is an academic ML project from the B.Tech period and is supporting technical evidence in the current Data Analyst portfolio. Its included sample dataset is intentionally limited; metrics must not be interpreted as real-world social-platform accuracy.
+
+For the current Data Analyst portfolio, see: https://nikhilamaragani-jpg.github.io/
